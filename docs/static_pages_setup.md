@@ -6,11 +6,9 @@ nav_order: 7
 
 # Setting up static pages
 
-
-
 templates/base.html
 
-```html
+``` html
 <!DOCTYPE html>
 <html lang="en">
   <head>
