@@ -4,7 +4,7 @@ title: Setting up Dev and Production Settings Files
 nav_order: 3
 ---
 
-## Set up Dev and Prod Settings
+# Set up Development and Production Settings
 
 First, allocate your local computer as a development environment, by putting in the following setting into your ~/.bashrc file: 
 

@@ -4,6 +4,8 @@ title: Initial App Setup
 nav_order: 2
 ---
 
+# Initial Django Setup
+
 Create and navigate to the outer development directory, e.g. dev/django/ (or wherever you want to store the Django project):
 
 ``` bash
