@@ -1,6 +1,6 @@
 ---
 layout: default
-title: User Authentication Setup
+title: User Authentication
 nav_order: 8
 ---
 
