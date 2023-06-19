@@ -6,10 +6,11 @@ nav_order: 7
 
 # Setting up static pages
 
- - pages app
- - set up top level templates folder (for layouts, base.html, etc)
 
-tenplates/base.html
+
+templates/base.html
+
+```html
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -44,12 +45,12 @@ tenplates/base.html
     </div>
   </body>
 </html>
+```
 
+- set index.html in pages/templates/pages (new directory)
 
-
-- set index.html in pages/tenplates/pages (new directory)
-
-{% extends "base_generic.html" %}
+```html
+{% extends "base.html" %}
 
 {% block content %}
   <h1>Local Library Home</h1>
@@ -66,7 +67,7 @@ tenplates/base.html
     <li><strong>Authors:</strong> {{ num_authors }}</li>
   </ul>
 {% endblock %}
+```
 
-
- - set urls.py
+set urls.py
 
