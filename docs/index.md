@@ -1,3 +1,6 @@
+---
+---
+
 # Skeleton Django App
 
 ## Overview
