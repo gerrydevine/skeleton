@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Home
+title: Setting up a Custom User
 nav_order: 5
 ---
 
