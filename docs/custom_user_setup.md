@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Setting up a Custom User
-nav_order: 5
+title: Setting up a Custom User Model
+nav_order: 6
 ---
 
-# Setting up a custom user
+# Setting up a custom user model
 
 __Note - It is important to do this step before running the first migrate of the database as it can be difficult once the default user has already been set in place in the database__ 
 

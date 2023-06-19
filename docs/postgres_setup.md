@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Postgres Setup
-nav_order: 6
+nav_order: 5
 ---
 
 # Postgres Setup
