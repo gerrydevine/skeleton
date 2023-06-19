@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Initial App Setup
+title: Initial Django Setup
 nav_order: 2
 ---
 
