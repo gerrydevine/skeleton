@@ -212,7 +212,3 @@ MEDIA_ROOT = os.path.join(FILES_DIR, 'media')
 
 * Add settings_dev.py to your .gitignore when it is created.
 * Make sure you add SITE_ID = 1 to settings.py below installed_apps
-
----
-
-## Git Setup
