@@ -169,5 +169,5 @@ plots/
 pickles/
 logs/
 Logs/
-settings-dev.py
+settings_dev.py
 
