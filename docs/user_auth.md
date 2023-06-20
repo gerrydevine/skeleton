@@ -63,11 +63,12 @@ Create login.html (in the templates/registration directory) and fill it with:
 ```
 {% endraw %}
 
-Also, ensure that upon login the user is redirected to the home page. Add the following to the main settings.py file
+Also, ensure that upon login and logout the user is redirected to the home page. Add the following to the main settings.py file
 
 ```python
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 ```
 
 Now visit [http://127.0.0.1:8000/accounts/login/](http://127.0.0.1:8000/accounts/login/) to make sure the tenplate works

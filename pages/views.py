@@ -1,5 +1,10 @@
 from django.shortcuts import render
 
 def home(request):
-    # return HttpResponse("Welcome to the Instrument ID Management System (IIMS)")
     return render(request, "pages/home.html")
+
+def about(request):
+    return render(request, "pages/about.html")
+
+def loggedinpage(request):
+    return render(request, "pages/loggedinpage.html")
