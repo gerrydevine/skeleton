@@ -20,6 +20,7 @@ Put your HTML pages in the __templates/registration/__ directory. This directory
 
 Create login.html (in the templates/registration directory) and fill it with:
 
+{% raw %}
 ```python
 {% extends "base.html" %}
 
@@ -60,6 +61,7 @@ Create login.html (in the templates/registration directory) and fill it with:
 {% endblock %}
 
 ```
+{% endraw %}
 
 Also, ensure that upon login the user is redirected to the home page. Add the following to the main settings.py file
 
@@ -76,6 +78,7 @@ Now add all the remaining auth templates:
 
 _logged_out.html_
 
+{% raw %}
 ```python
 {% extends "base.html" %}
 
@@ -84,9 +87,11 @@ _logged_out.html_
   <a href="{% url 'login'%}">Click here to login again.</a>
 {% endblock %}
 ```
+{% endraw %}
 
 _password_reset_form.html_
 
+{% raw %}
 ```python
 {% extends "base.html" %}
 
@@ -101,9 +106,11 @@ _password_reset_form.html_
   </form>
 {% endblock %}
 ```
+{% endraw %}
 
 _password_reset_done.html_
 
+{% raw %}
 ```python
 {% extends "base.html" %}
 
@@ -111,16 +118,20 @@ _password_reset_done.html_
   <p>We've emailed you instructions for setting your password. If they haven't arrived in a few minutes, check your spam folder.</p>
 {% endblock %}
 ```
+{% endraw %}
 
 _password_reset_email.html_
 
+{% raw %}
 ```python
 Someone asked for password reset for email {{ email }}. Follow the link below:
 {{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
 ```
+{% endraw %}
 
 _password_reset_confirm.html_
 
+{% raw %}
 ```python
 {% extends "base.html" %}
 
@@ -151,11 +162,12 @@ _password_reset_confirm.html_
         <p>The password reset link was invalid, possibly because it has already been used. Please request a new password reset.</p>
     {% endif %}
 {% endblock %}
-
 ```
+{% endraw %}
 
 _password_reset_complete.html_
 
+{% raw %}
 ```python
 {% extends "base.html" %}
 
@@ -164,6 +176,7 @@ _password_reset_complete.html_
   <p><a href="{% url 'login' %}">log in again?</a></p>
 {% endblock %}
 ```
+{% endraw %}
 
 Note: The password reset system requires that your website supports email. To allow testing, put the following line at the end of your __settings_dev.py__ file. This logs any emails sent to the console (so you can copy the password reset link from the console).
 
@@ -175,6 +188,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 Update the base html to allow buttons for login and logout:
 
+{% raw %}
 ```python
 {% block sidebar %}
     <a href="{% url 'home' %}">Home</a>
@@ -188,6 +202,7 @@ Update the base html to allow buttons for login and logout:
     </ul>
 {% endblock %}
 ```
+{% endraw %}
 
 ---
 
