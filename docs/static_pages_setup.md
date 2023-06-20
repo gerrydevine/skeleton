@@ -8,6 +8,7 @@ nav_order: 7
 
 templates/base.html
 
+{% raw %}
 ``` html
 <!DOCTYPE html>
 <html lang="en">
@@ -44,9 +45,12 @@ templates/base.html
   </body>
 </html>
 ```
+{% endraw %}
+
 
 - set index.html in pages/templates/pages (new directory)
 
+{% raw %}
 ```html
 {% extends "base.html" %}
 
@@ -66,6 +70,7 @@ templates/base.html
   </ul>
 {% endblock %}
 ```
+{% endraw %}
 
 set urls.py
 
