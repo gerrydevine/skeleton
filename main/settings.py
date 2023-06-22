@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'users',
     'pages',
+    'records'
 
     'psycopg2',
     'bootstrap5'
@@ -80,7 +81,7 @@ TEMPLATES = [
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+# LOGOUT_REDIRECT_URL = 'home'
 
 WSGI_APPLICATION = 'main.wsgi.application'
 

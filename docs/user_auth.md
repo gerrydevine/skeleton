@@ -68,10 +68,9 @@ Also, ensure that upon login and logout the user is redirected to the home page.
 ```python
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
 ```
 
-Now visit [http://127.0.0.1:8000/accounts/login/](http://127.0.0.1:8000/accounts/login/) to make sure the tenplate works
+Now visit [http://127.0.0.1:8000/accounts/login/](http://127.0.0.1:8000/accounts/login/) to make sure the template works
 
 ---
 
