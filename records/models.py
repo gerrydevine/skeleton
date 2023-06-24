@@ -5,6 +5,13 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+# validator function for Record - rating should be between 1 and 10
+def validate_record_rating_1_10(value):
+    if value > 0 and value <= 10:
+        return value
+    else:
+        raise ValidationError("A rating should be between 1 and 10")
+
 
 class Record(models.Model):
     """Record Model"""
@@ -21,7 +28,7 @@ class Record(models.Model):
     title = models.CharField(max_length=50, help_text='Enter Record Title', verbose_name='Record Title')
     description = models.TextField(help_text='Enter Record Description', verbose_name='Record Description')
     type = models.CharField(max_length=4, choices=TYPE_CHOICES, help_text='Enter Record Type', verbose_name='Record Type')
-    rating = models.IntegerField(blank=True, null=True, default=None, help_text='Enter Rating (1-10)')
+    rating = models.IntegerField(blank=True, null=True, default=None, help_text='Enter Rating (1-10)', validators =[validate_record_rating_1_10])
     version = models.FloatField(null=True, blank=True, default=None)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -38,9 +45,5 @@ class Record(models.Model):
     def __str__(self):
         """String for representing the Record object (in Admin site etc.)."""
         return self.title
-    
-    def clean(self):
-        if not self.rating > 0 and self.rating <= 10:
-            raise ValidationError(
-                {'rating': "Rating should be from 1 to 10"})
+
         

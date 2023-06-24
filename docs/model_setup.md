@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Model Setup
-nav_order: 8
+nav_order: 9
 ---
 
 # Model Setup
@@ -16,6 +16,7 @@ The structure of a new model will typically take the following form:
 ```python
 from django.db import models
 from django.urls import reverse
+
 
 class MyModelName(models.Model):
     """A typical class defining a model, derived from the Model class."""
@@ -117,3 +118,14 @@ When done, migrate the database:
 $ python manage.py makemigrations
 $ python manage.py migrate
 ```
+
+Add the model to the Admin interface in admin.py:
+
+```python
+...
+from .models import Record
+
+admin.site.register(Record)
+```
+
+At this stage you can fire up the local server and visit _../admin/_ to play around with the admin model.
