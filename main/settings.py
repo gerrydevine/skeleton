@@ -41,7 +41,7 @@ INSTALLED_APPS = [
 
     'users',
     'pages',
-    'records'
+    'records',
 
     'psycopg2',
     'bootstrap5'

@@ -64,25 +64,30 @@ Now register it in INSTALLED_APPS in settings.py
 
 ### Record Model
 
-Create a new Record Model. Note that we are importing the User model here so that we can associate the Record with an Owner User.
+Create a new Record Model. Note that we are importing the User model here so that we can associate the Record with an Owner User. We 
+are also implementing a custom validation on the _rating_ field
 
 ```python
+from django.core.exceptions import ValidationError
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
 class Record(models.Model):
     """Record Model"""
 
-    TYPE_CHOICES = [
-        'THES', 'THESIS',
-        'DATA', 'DATASET',
-        'PUBL', 'PUBLICATION',
-        'NTRO', 'NON-TRADITIONAL RESEARCH OUTPUT'
-    ]
+    TYPE_CHOICES = (
+        ('THES', 'THESIS'),
+        ('DATA', 'DATASET'),
+        ('PUBL', 'PUBLICATION'),
+        ('NTRO', 'NON-TRADITIONAL RESEARCH OUTPUT')
+    )
 
     # Fields
-    owner = models.ForeignKey(User, on_delete=models.SET_NULL)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=50, help_text='Enter Record Title', verbose_name='Record Title')
     description = models.TextField(help_text='Enter Record Description', verbose_name='Record Description')
     type = models.CharField(max_length=4, choices=TYPE_CHOICES, help_text='Enter Record Type', verbose_name='Record Type')
-    rating = models.IntegerField(blank=True, null=True, default=None)
+    rating = models.IntegerField(blank=True, null=True, default=None, help_text='Enter Rating (1-10)')
     version = models.FloatField(null=True, blank=True, default=None)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -99,4 +104,16 @@ class Record(models.Model):
     def __str__(self):
         """String for representing the Record object (in Admin site etc.)."""
         return self.title
+
+    def clean(self):
+        if not self.rating > 0 and self.rating <= 10:
+            raise ValidationError(
+                {'rating': "Rating should be from 1 to 10"})
+```
+
+When done, migrate the database:
+
+```bash
+$ python manage.py makemigrations
+$ python manage.py migrate
 ```
