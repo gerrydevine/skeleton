@@ -5,9 +5,11 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-# validator function for Record - rating should be between 1 and 10
 def validate_record_rating_1_10(value):
-    if value > 0 and value <= 10:
+    ''' Validator function for Record Rating - Rating should be between 1 and 10 (if not None)'''
+    if value is None:
+        return value
+    elif value > 0 and value <= 10:
         return value
     else:
         raise ValidationError("A rating should be between 1 and 10")
@@ -40,10 +42,22 @@ class Record(models.Model):
     # Methods
     def get_absolute_url(self):
         """Returns the URL to access a particular instance of a Record."""
-        return reverse('record-detail-view', args=[str(self.id)])
+        return reverse('record-view', args=[str(self.id)])
 
     def __str__(self):
         """String for representing the Record object (in Admin site etc.)."""
         return self.title
+    
+    def clean(self):
+        if self.rating is not None:
+            if self.rating < 1 or self.rating > 10:
+                raise ValidationError("A record rating should be between 1 and 10")
 
-        
+        valid_types = [i[0] for i in self.TYPE_CHOICES]
+        if self.type not in valid_types:
+            raise ValidationError("Invalid Record Type")
+    
+    def save(self, *args, **kwargs):
+        self.full_clean()
+
+        super().save(*args, **kwargs)

@@ -36,6 +36,12 @@ Create a new user (role) with a password:
 CREATE ROLE databasename_user WITH LOGIN PASSWORD 'letmeintothisapp';
 ```
 
+Add the 'createdb' permission to the django user by running the following command (this permission will be needed to allow the user to create new testing databases).
+
+```bash
+ALTER USER databasename_user CREATEDB;
+```
+
 Create a new database and set the owner user(role):
 
 ``` bash
