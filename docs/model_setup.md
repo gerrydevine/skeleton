@@ -1,15 +1,12 @@
 ---
 layout: default
-title: Model Setup
-nav_order: 9
+title: New Model Setup
+parent: Models
+nav_order: 2
 ---
 
-# Model Setup
 
-For the remainder of this tutorial we will use the idea of a record system. A user can create, view, edit and delete a record. They will also be able to publish the record when ready, thus making it visible by all (inc non-logged in users). In addition, the user can nominate other users to be able to collaborate on the record. A reviewer role will review the published record before it is made public.  
-
-
-## New Model
+## New Model Setup
 
 The structure of a new model will typically take the following form: 
 
