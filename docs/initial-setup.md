@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Initial Django Setup
-nav_order: 2
+parent: setup
+nav_order: 1
 ---
 
 # Initial Django Setup
