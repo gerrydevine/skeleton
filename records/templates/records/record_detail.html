@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <a href="{% url 'record-update' record.id %}">Update Record </a>  |  <a href="{% url 'record-delete' record.id %}"> Delete Record</a>
+  <br/>
+  <br/>
+
+  <h1>Title: {{ record.title }}</h1>
+
+  <p><strong>Owner:</strong> {{ record.owner }}</p>
+  <p><strong>Description:</strong> {{ record.description }}</p>
+  <p><strong>Type:</strong> {{ record.get_type_display }}</p>
+  <p><strong>Rating:</strong> {{ record.rating }}</p>
+  <p><strong>Version:</strong> {{ record.version }}</p>
+
+  <br/>
+  <br/>
+  <a href="{% url 'record-list' %}"><<< Back to Records</a>
+
+{% endblock %}

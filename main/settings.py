@@ -21,10 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-m*#lgo)3+*0**o2*4zb9bc0kbg*11(!m4$t1n%e2%lsj5e=*8e'
+# SECRET_KEY = 'django-insecure-m*#lgo)3+*0**o2*4zb9bc0kbg*11(!m4$t1n%e2%lsj5e=*8e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'records',
 
     'psycopg2',
-    'bootstrap5'
+    'bootstrap5',
+    'guardian',
 ]
 
 AUTH_USER_MODEL = 'users.User'
@@ -60,6 +61,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend', # this is default
+    'guardian.backends.ObjectPermissionBackend',
+)
 
 ROOT_URLCONF = 'main.urls'
 

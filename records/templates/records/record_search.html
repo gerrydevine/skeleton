@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <form>
+    <input type="text" name="q" placeholder="Search record titles">
+    <input type="submit" value="Search">
+  </form>
+
+
+  {% if not new_search %}
+    {% if results %}
+      <ul>
+        {% for record in results %}
+          <li>
+            <a href="{{ record.get_absolute_url }}">{{ record.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <h5>No Records Found</h5>
+    {% endif %}
+    <br/>
+    <p><a href="{% url 'record-search' %}">Clear Search</a></p>
+  {% endif %}
+  
+
+  <br/>
+  <br/>
+
+{% endblock %}

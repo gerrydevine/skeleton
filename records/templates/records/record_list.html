@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>My Records</h1>
+  {% if record_list %}
+    <ul>
+      {% for record in record_list %}
+      <li>
+        <a href="{{ record.get_absolute_url }}">{{ record.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no Records at this time.</p>
+  {% endif %}
+  <br/>
+  <a href="{% url 'record-create' %}">Add New Record</a>
+{% endblock %}
