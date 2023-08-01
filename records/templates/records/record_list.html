@@ -2,9 +2,9 @@
 
 {% block content %}
   <h1>My Records</h1>
-  {% if record_list %}
+  {% if records %}
     <ul>
-      {% for record in record_list %}
+      {% for record in records %}
       <li>
         <a href="{{ record.get_absolute_url }}">{{ record.title }}</a>
       </li>

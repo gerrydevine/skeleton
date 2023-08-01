@@ -4,14 +4,14 @@ from django.core.exceptions import ValidationError
 from records.models import Record
 
 
-class RecordForm(forms.ModelForm):
+class RecordCreateForm(forms.ModelForm):
     class Meta:
         model = Record
         fields = ['title', 'description', 'type', 'rating', 'version']
     
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop("request")
-        super(RecordForm, self).__init__(*args, **kwargs)
+        super(RecordCreateForm, self).__init__(*args, **kwargs)
 
     def clean(self):
         cleaned_data = self.cleaned_data
@@ -19,6 +19,28 @@ class RecordForm(forms.ModelForm):
         # Clean title
         title = cleaned_data.get('title')
         if Record.objects.filter(owner=self.request.user, title=title).exists():
+            self.add_error('title', 'You have used this title already!')
+        
+        return cleaned_data
+
+
+class RecordUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Record
+        fields = ['title', 'description', 'type', 'rating', 'version']
+    
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop("request")
+        super(RecordUpdateForm, self).__init__(*args, **kwargs)
+
+    def clean(self):
+        cleaned_data = self.cleaned_data
+
+        # Clean title
+        title = cleaned_data.get('title')
+
+        other_records = Record.objects.filter(owner=self.request.user).exclude(pk=self.instance.pk)
+        if other_records.filter(title=title).exists():
             self.add_error('title', 'You have used this title already!')
         
         return cleaned_data
@@ -44,41 +66,41 @@ class RecordForm(forms.ModelForm):
 #         return cleaned_data
     
 
-class RecordCreateForm(ModelForm):
-    class Meta:
-        model = Record
-        fields = ['title', 'description', 'type', 'rating', 'version']
+# class RecordCreateForm(ModelForm):
+#     class Meta:
+#         model = Record
+#         fields = ['title', 'description', 'type', 'rating', 'version']
     
-    def __init__(self, *args, **kwargs):
-        self.owner = kwargs.pop('owner')
+#     def __init__(self, *args, **kwargs):
+#         self.owner = kwargs.pop('owner')
 
-        super(RecordCreateForm, self).__init__(*args, **kwargs)
+#         super(RecordCreateForm, self).__init__(*args, **kwargs)
 
-    def clean(self):
-        cleaned_data = super(RecordCreateForm, self).clean()
+#     def clean(self):
+#         cleaned_data = super(RecordCreateForm, self).clean()
 
-        title = cleaned_data.get('title')
+#         title = cleaned_data.get('title')
 
-        if Record.objects.filter(owner=self.owner, title=title).exists():
-            self.add_error(None, ValidationError('You have used this title already!'))
+#         if Record.objects.filter(owner=self.owner, title=title).exists():
+#             self.add_error(None, ValidationError('You have used this title already!'))
 
 
-class RecordUpdateForm(ModelForm):
-    class Meta:
-        model = Record
-        fields = ['title', 'description', 'type', 'rating', 'version']
+# class RecordUpdateForm(ModelForm):
+#     class Meta:
+#         model = Record
+#         fields = ['title', 'description', 'type', 'rating', 'version']
     
-    def __init__(self, *args, **kwargs):
-        self.owner = kwargs.pop('owner')
+#     def __init__(self, *args, **kwargs):
+#         self.owner = kwargs.pop('owner')
 
-        super(RecordUpdateForm, self).__init__(*args, **kwargs)
+#         super(RecordUpdateForm, self).__init__(*args, **kwargs)
 
-    def clean(self):
-        cleaned_data = super(RecordUpdateForm, self).clean()
+#     def clean(self):
+#         cleaned_data = super(RecordUpdateForm, self).clean()
 
-        title = cleaned_data.get('title')
+#         title = cleaned_data.get('title')
 
-        other_records = Record.objects.filter(owner=self.owner).exclude(pk=self.instance.pk)
+#         other_records = Record.objects.filter(owner=self.owner).exclude(pk=self.instance.pk)
 
-        if other_records.filter(title=title).exists():
-            self.add_error(None, ValidationError('You have used this title already!'))
+#         if other_records.filter(title=title).exists():
+#             self.add_error(None, ValidationError('You have used this title already!'))
