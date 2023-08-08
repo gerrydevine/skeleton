@@ -58,30 +58,9 @@ class Record(models.Model):
 
     def __str__(self):
         return self.title
-    
-    # def clean(self):
-    #     # Validate rating
-    #     if self.rating is not None:
-    #         if self.rating < 1 or self.rating > 10:
-    #             raise ValidationError("A record rating should be between 1 and 10")
-
-    #     # Validate Type
-    #     valid_types = [i[0] for i in self.TYPE_CHOICES]
-    #     if self.type not in valid_types:
-    #         raise ValidationError("Invalid Record Type")
-        
-    #     # Validate unique title
-    #     # if Record.objects.filter(owner=self.owner, title=self.title).exists():
-    #     #     raise ValidationError("A matchin title already exists for this user")
-
-    
-    # def save(self, *args, **kwargs):
-    #     self.full_clean()
-
-    #     super().save(*args, **kwargs)
 
 
-class File(models.Model):
+class RecordFile(models.Model):
     record = models.ForeignKey(Record, on_delete=models.CASCADE)
     filename = models.CharField(max_length=100, help_text='Enter File Details', blank=True, null=True)
     description = models.TextField(help_text='Enter File Description', verbose_name='File Description')
@@ -90,9 +69,9 @@ class File(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.filename)
 
     class Meta:
         ordering = ["-updated"]
-        verbose_name = "File"
-        verbose_name_plural = "Files"
+        verbose_name = "Record File"
+        verbose_name_plural = "Record Files"

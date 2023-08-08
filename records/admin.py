@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Record
+from .models import Record, RecordFile
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 
@@ -21,4 +21,9 @@ class RecordAdmin(admin.ModelAdmin):
    fields = ('owner', 'title', 'description', 'type', 'rating', 'version')
  
  
+class RecordFileAdmin(admin.ModelAdmin):
+   fields = ('record', 'filename', 'description', 'visible')
+ 
+ 
 admin.site.register(Record, RecordAdmin)
+admin.site.register(RecordFile, RecordFileAdmin)

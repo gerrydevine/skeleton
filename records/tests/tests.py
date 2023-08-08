@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.core.exceptions import ValidationError
 
-from .models import Record
+from ..models import Record
 from users.models import User
 
 

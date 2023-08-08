@@ -4,13 +4,9 @@
 <form action="." method="post">
   {% csrf_token %}
   <h1>Update Record</h1>
-  <!-- <input type="text" name="title" placeholder="Enter Title"/>
-  <br/>
-  <textarea name="description" cols="30" rows="10" placeholder="Enter Description"></textarea>
-  <br/>
-  <input type="text" name="type" placeholder="Enter Type"/> -->
   {{ form.as_p }}
   <br/>
-  <input type="submit" value="Submit Record" />
+  <a class="button" href="{% url 'record-details' record.id %}">Cancel</a>
+  <input type="submit" class="button-primary" value="Update Record" />
 </form>
 {% endblock %}
